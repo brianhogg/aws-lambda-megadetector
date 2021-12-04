@@ -227,7 +227,6 @@ def process_image(image, im_file, tf_detector, confidence_threshold):
 
 
 def lambda_handler(event, context):
-#   bucket_name = event['Records'][0]['s3']['bucket']['name']
 #   key = event['Records'][0]['s3']['object']['key']
 #
 #   img = readImageFromBucket(key, bucket_name).resize(IMAGE_SHAPE)
@@ -237,8 +236,9 @@ def lambda_handler(event, context):
   confidence_threshold = 0.1
   model_file = 'md_v4.1.0.pb'
   n_cores = 1
-  im_file = 'deer.jpg' # event['Records'][0]['s3']['object']['key']
-  image = Image.open("deer.jpg") # readImageFromBucket(im_file, bucket_name)
+  bucket_name = event['Records'][0]['s3']['bucket']['name']
+  im_file = event['Records'][0]['s3']['object']['key'] # 'deer.jpg'
+  image = readImageFromBucket(im_file, bucket_name)
 
   start_time = time.time()
   tf_detector = TFDetector(model_file)
