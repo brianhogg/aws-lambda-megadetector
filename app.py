@@ -6,14 +6,14 @@ import PIL.Image as Image
 import tensorflow as tf
 import tensorflow_hub as hub
 
-IMAGE_WIDTH = 224
-IMAGE_HEIGHT = 224
+# IMAGE_WIDTH = 224
+# IMAGE_HEIGHT = 224
 
-IMAGE_SHAPE = (IMAGE_WIDTH, IMAGE_HEIGHT)
-model = tf.keras.Sequential([hub.KerasLayer("model/")])
-model.build([None, IMAGE_WIDTH, IMAGE_HEIGHT, 3])
+#IMAGE_SHAPE = (IMAGE_WIDTH, IMAGE_HEIGHT)
+#model = tf.keras.Sequential([hub.KerasLayer("model/")])
+#model.build([None, IMAGE_WIDTH, IMAGE_HEIGHT, 3])
 
-imagenet_labels= np.array(open('model/ImageNetLabels.txt').read().splitlines())
+#imagenet_labels= np.array(open('model/ImageNetLabels.txt').read().splitlines())
 s3 = boto3.resource('s3')
 
 def lambda_handler(event, context):
